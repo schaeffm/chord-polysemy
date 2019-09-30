@@ -1,0 +1,74 @@
+name:                chord-polysemy
+version:             0.1.0.0
+license:             BSD3
+license-file:        LICENSE
+author:              Maximilian Schaeffeler
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable chord-polysemy
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  other-modules:        Peer, ChordPeer, Routing, Procedures, Messages, MockTest
+  build-depends:        base >= 4.7 && < 5, 
+                        polysemy, 
+                        polysemy-plugin,
+                        containers,
+                        stm,
+                        data-dword,
+                        fmt
+  ghc-options: -O2 -flate-specialise -fspecialise-aggressively -fplugin=Polysemy.Plugin -Wall -threaded
+  default-extensions:
+    DataKinds
+    , FlexibleContexts
+    , GADTs
+    , LambdaCase
+    , PolyKinds
+    , RankNTypes
+    , ScopedTypeVariables
+    , TypeApplications
+    , TypeOperators
+    , TypeFamilies
+    , TemplateHaskell
+    , TypeSynonymInstances
+
+executable mock-test
+  hs-source-dirs:      src
+  main-is:             MockTest.hs
+  default-language:    Haskell2010
+  build-depends:        base >= 4.7 && < 5, 
+                        polysemy, 
+                        polysemy-plugin,
+                        containers,
+                        stm,
+                        data-dword,
+                        fmt
+  ghc-options: -O2 -flate-specialise -fspecialise-aggressively -fplugin=Polysemy.Plugin -Wall -main-is MockTest -threaded
+  other-modules:
+      ChordPeer
+    , Connection
+    , Identifier
+    , Log
+    , Messages
+    , Peer
+    , Procedures
+    , Remote
+    , Routing
+    , RoutingTable
+    , Storage
+    , Util
+  default-extensions:
+    DataKinds
+    , FlexibleContexts
+    , GADTs
+    , LambdaCase
+    , PolyKinds
+    , RankNTypes
+    , ScopedTypeVariables
+    , TypeApplications
+    , TypeOperators
+    , TypeFamilies
+    , TemplateHaskell
+    , TypeSynonymInstances
